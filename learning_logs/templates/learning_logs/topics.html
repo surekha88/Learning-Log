@@ -11,7 +11,7 @@
       <a href="{% url 'learning_logs:entry' topic.id %}">{{ topic }}</a>
     
     <small>
-      <a href="{% url 'learning_logs:del_topic' topic.id %}" class = "text-danger">Delete Topic </a>
+      <a href="{% url 'learning_logs:del_topic' topic.id %}" class = "text-danger" onclick = "return confirm('Are you sure you want to delete this?')">Delete Topic </a>
      </small>
     </h3>
      </li>
@@ -21,3 +21,9 @@
   </ul>
   <h3><a href="{% url 'learning_logs:new_topic' %}">Add a new topic:</a></h3>
 {% endblock content %}
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).on('click', '.conf_del', function(){
+    return confirm('Are you sure you want to delete this?');
+  })
+  </script> --> 
