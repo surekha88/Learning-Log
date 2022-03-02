@@ -9,6 +9,10 @@
      <li>
       <h3>
       <a href="{% url 'learning_logs:entry' topic.id %}">{{ topic }}</a>
+    
+    <small>
+      <a href="{% url 'learning_logs:del_topic' topic.id %}" class = "text-danger">Delete Topic </a>
+     </small>
     </h3>
      </li>
     {% empty %}

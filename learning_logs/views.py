@@ -84,3 +84,33 @@ def edit_entry(request, entry_id):
    return HttpResponseRedirect(reverse('learning_logs:entry',args=[topic.id]))
  context = {'entry': entry, 'topic': topic, 'form': form}
  return render(request, 'learning_logs/edit_entry.html', context)
+ 
+@login_required
+def del_entry(request,entry_id):
+ """Delete an existing entry."""
+ entry = Entry.objects.get(id=entry_id)
+ topic = entry.topic
+ # Make sure the topic belongs to the current user.
+ if topic.owner != request.user:
+  raise Http404
+ entry.delete()
+ return HttpResponseRedirect(reverse('learning_logs:entry' ,args=[topic.id]))
+ 
+@login_required
+def del_topic(request,topic_id):
+ """Delete an existing topic."""
+ topic = Topic.objects.get(id=topic_id)
+ entries = topic.entry_set.order_by('-date_added')
+ #entry = Entry.objects.get(id=entry_id)
+ #topic = entry.topic
+ # Make sure the topic belongs to the current user.
+ if topic.owner != request.user:
+  raise Http404
+ entries.delete()
+ topic.delete()
+ return HttpResponseRedirect(reverse('learning_logs:topics'))# ,args=[topic.id]))
+ 
+  
+ 
+  
+

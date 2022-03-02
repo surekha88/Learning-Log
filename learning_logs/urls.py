@@ -33,5 +33,13 @@ urlpatterns = [
  
  # Page for editing an entry
  re_path(r'^edit_entry/(?P<entry_id>\d+)/$', views.edit_entry, name='edit_entry'),
+ 
+ #For Deleting Entry
+ re_path(r'^del_entry/(?P<entry_id>\d+)/$', views.del_entry, name='del_entry'),
+ 
+ #For Deleting Entry
+ re_path(r'^del_topic/(?P<topic_id>\d+)/$', views.del_topic, name='del_topic'),
+ 
+ 
   ]
       
